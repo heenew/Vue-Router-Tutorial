@@ -26,6 +26,8 @@
           router
           :to="{
             name: 'users',
+            /*
+            ** 값 전달하기 **
             params: {
               // 값을 숨길 수 있음
               // 주소창에 직접 값을 써도 되고 지정해줘도 됨
@@ -37,6 +39,7 @@
               group: 'member',
               category: 'trial',
             },
+            */
           }"
           exact
         >

@@ -9,6 +9,10 @@ const About = () => import(/* webpackChunkName: "about" */ "./views/About.vue");
 
 // 주소 뒤의 내용을 하나의 값으로 받음
 const Users = () => import(/* webpackChunkName: "users" */ "./views/Users.vue");
+const UsersDetail = () =>
+  import(/* webpackChunkName: "users-detail" */ "./views/UsersDetail.vue");
+const UsersEdit = () =>
+  import(/* webpackChunkName: "users-edit" */ "./views/UsersEdit.vue");
 
 export default new Router({
   mode: "history",
@@ -22,9 +26,6 @@ export default new Router({
     {
       path: "/about",
       name: "about-name",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: About,
     },
     {
@@ -33,10 +34,25 @@ export default new Router({
       // 파라미터를 지정하지 않아도 router로 지정하면 사용 가능
       path: "/users",
       name: "users",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      /* 라우터가 불러와 지기 전에 함수가 먼저 실행된 후 라우터가 동작하게 하는 명령 */
+      beforeEnter: (to, from, next) => {
+        console.log("to: ", to, "from: ", from);
+      },
       component: Users,
+      // 하위경로
+
+      children: [
+        {
+          path: ":id",
+          name: "users-detail",
+          component: UsersDetail,
+        },
+        {
+          path: ":id/edit",
+          name: "users-edit",
+          component: UsersEdit,
+        },
+      ],
     },
   ],
 });
