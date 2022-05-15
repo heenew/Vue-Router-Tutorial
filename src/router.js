@@ -32,12 +32,16 @@ export default new Router({
       // :id 자리에 오는 값이 id값이 됨
       // path: "/users/:userId",
       // 파라미터를 지정하지 않아도 router로 지정하면 사용 가능
+      /* to, from: 라우터가 어디에서 어디로 가고 있는지 정보를 담고 있음
+         next: 안에 있는 함수를 실행 후 라우터를 실제로 어디로 이동시킬 것인지 결정하는 함수를 갖고 있음 */
       path: "/users",
       name: "users",
       /* 라우터가 불러와 지기 전에 함수가 먼저 실행된 후 라우터가 동작하게 하는 명령 */
-      beforeEnter: (to, from, next) => {
-        console.log("to: ", to, "from: ", from);
-      },
+      // beforeEnter: (to, from, next) => {
+      //   console.log("to: ", to, "from: ", from)
+      //   console.log("beforeEnter")
+      //   next()
+      //    },
       component: Users,
       // 하위경로
 
@@ -54,5 +58,12 @@ export default new Router({
         },
       ],
     },
+    {
+      path:'/redirect-me',
+      redirect: {name: 'users'} // 위의 주소로 왔을 때 이 주소로 다이렉트 시켜줘
+    },
+    {
+      path: '/*' // 위에서 선언된 path 외의 모든것
+    }
   ],
 });

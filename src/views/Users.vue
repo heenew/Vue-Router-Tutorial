@@ -60,5 +60,19 @@ export default {
       userId: null,
     };
   },
+  beforeRouteEnter(to, from, next){
+    console.log("before Enters")
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+     console.log("before Leave")
+    next()
+  },
+  created(){
+    console.log("created")
+  },
+  destroyed(){  // 해당 페이지가 없어질 때 (부셔질 때)
+    console.log("destroyed")
+  }
 };
 </script>
